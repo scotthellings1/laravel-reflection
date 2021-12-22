@@ -4,14 +4,13 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
-            </div>
+    <div class="max-w-6xl mx-auto grid mt-8">
+        <!-- Cards -->
+        <div class="grid gap-6 mb-8 md:grid-cols-2">
+            <x-counter-card text="Companies" count="{{ $companies }}" icon="C"/>
+            <x-counter-card text="Employees" count="{{ $employees }}" icon="E"/>
         </div>
     </div>
+
+
 </x-app-layout>
