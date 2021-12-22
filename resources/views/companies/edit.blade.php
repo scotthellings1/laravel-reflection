@@ -37,7 +37,7 @@
             <div class="flex items-center justify-end mt-4">
 
                 <x-button class="ml-3 bg-blue-400 hover:bg-blue-500">
-                    {{ __('Add Company') }}
+                    {{ __('Update Company') }}
                 </x-button>
             </div>
         </form>
