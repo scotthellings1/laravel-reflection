@@ -13,7 +13,7 @@ class StoreCompanyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','min:2', 'unique:companies,name'],
+            'email' => 'nullable|email',
+            'logo' => 'image|dimensions:min_width=100,min_height=100',
+            'website' => 'nullable|url'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Company already exists with that name'
         ];
     }
 }

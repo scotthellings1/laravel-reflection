@@ -4,15 +4,37 @@
             {{ __('Companies') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex justify-end">
-            <a href="{{ route('companies.create') }}"
-               class=" flex items-center justify-center h-10 px-5 m-2 font-semibold text-blue-900 transition-colors
-               duration-[50ms]
-        bg-blue-400
-        rounded-lg
-        focus:shadow-outline hover:bg-blue-500">Add Company</a>
+    <div class="flex justify-center my-10">
+        <div class="flex flex-col w-1/2 bg-white rounded-lg p-8 space-y-4 shadow-md">
+            @if ($company->logo)
+                <div class="flex justify-center">
+                    <img class=" rounded-lg w-32 h-32" src="../storage/{{ $company->logo }}" alt="">
+                </div>
+            @endif
+
+            <div class="flex">
+                <span class="mr-4 font-semibold">Company Name:</span>
+                <span>{{ $company->name }}</span>
+            </div>
+            <div class="flex">
+                <span class="mr-4 font-semibold">Company Email:</span>
+                <span>{{ $company->email }}</span>
+            </div>
+            <div class="flex">
+                <span class="mr-4 font-semibold">Company Website:</span>
+                <span>  <a href="#">{{ $company->website }}</a></span>
+            </div>
+            <div class="flex">
+                <span class="mr-4 font-semibold">Number of Employees:</span>
+                <span>  <a href="#">{{ $company->employees->count() }}</a></span>
+            </div>
         </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-4"><h1 class="text-2xl my-2">
+            Employees
+        </h1>
+
         <div class="flex flex-col mt-2 mb-8">
             <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                 <div
@@ -22,7 +44,15 @@
                         <tr>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Company Name
+                                Id
+                            </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                First Name
+                            </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Last Name
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
@@ -30,11 +60,7 @@
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Logo
-                            </th>
-                            <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Website
+                                Phone
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
@@ -52,45 +78,43 @@
                         </thead>
 
                         <tbody class="bg-white">
-                        @foreach($companies as $company)
+                        @foreach($company->employees as $employee)
 
                             <tr>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="ml-4">
                                         <div class="text-sm font-medium leading-5 text-gray-900">
-                                            {{ $company->name }}
+                                            {{ $employee->id }}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium leading-5 text-gray-900">
+                                            {{ $employee->first_name }}
                                         </div>
                                     </div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-500">
-                                        {{ $company->email }}
+                                        {{ $employee->last_name }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-500">
-                                        @if ($company->logo)
-                                            <img class=" rounded-lg w-12 h-12" src="{{ "/storage/".
-                                            $company->logo
-                                             }}"
-                                                 alt="">
-                                        @else
-                                            <span class="text-sm">no logo</span>
-                                        @endif
-
-
+                                        <a href="#">{{ $employee->email}}</a>
                                     </div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-500">
-                                        <a href="#">{{ $company->website }}</a>
+                                        {{$employee->phone}}
                                     </div>
                                 </td>
                                 <td
                                     class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                    <a href="{{ route('companies.show', $company) }}">
+                                    <a href="{{ route('employees.show', $employee) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-400"
                                              fill="none"
                                              viewBox="0 0 24 24" stroke="currentColor">
@@ -101,29 +125,23 @@
                                         </svg>
                                     </a>
                                 </td>
-
                                 <td
                                     class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                    <a href="{{ route('companies.edit', $company) }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
-                                             viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                        </svg>
-                                    </a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                    </svg>
                                 </td>
                                 <td
                                     class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                    <form method="POST" action="{{ route('companies.destroy',  $company) }}">
+                                    <form method="POST" action="{{ route('employees.destroy',  $employee) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ route('companies.destroy',  $company) }}" onclick="event.preventDefault();
-                                                     if ( confirm('Are you sure? This will also  delete all employees' +
-                                                      ' for ' +
-                                                      'this company' +
-                                                      '')) {
-                                                       this.closest('form').submit()
-                                                   }">
+                                        <a href="{{ route('employees.destroy',  $employee) }}" onclick="event.preventDefault();
+                                                  if ( confirm('Are you sure?')) {
+                                                    this.closest('form').submit()
+                                                }">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400"
                                                  fill="none"
                                                  viewBox="0 0 24 24" stroke="currentColor">
@@ -139,11 +157,6 @@
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="flex justify-center">
-
-            {{$companies->links()}}
-
         </div>
     </div>
 </x-app-layout>

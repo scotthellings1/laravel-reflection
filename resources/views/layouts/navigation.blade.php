@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('companies.index')" :active="request()->segment(1) == 'companies'">
                         {{ __('Companies') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('employees.index')" :active="request()->segment(1) == 'employees'">
+                        {{ __('Employees') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -69,8 +72,11 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('companies.index')" :active="request()->routeIs('companies')">
+            <x-responsive-nav-link :href="route('companies.index')" :active="request()->segment(1) == 'companies'">
                 {{ __('Companies') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('employees.index')" :active="request()->segment(1) == 'employees'">
+                {{ __('Employees') }}
             </x-responsive-nav-link>
         </div>
 

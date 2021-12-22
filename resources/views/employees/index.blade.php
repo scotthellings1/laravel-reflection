@@ -1,17 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Companies') }}
+            {{ __('Employees') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="max-w-7xl mx-auto px-4 py-6">
         <div class="flex justify-end">
-            <a href="{{ route('companies.create') }}"
+            <a href="{{ route('employees.create') }}"
                class=" flex items-center justify-center h-10 px-5 m-2 font-semibold text-blue-900 transition-colors
                duration-[50ms]
         bg-blue-400
         rounded-lg
-        focus:shadow-outline hover:bg-blue-500">Add Company</a>
+        focus:shadow-outline hover:bg-blue-500">Add Employee</a>
+
         </div>
         <div class="flex flex-col mt-2 mb-8">
             <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -22,7 +23,11 @@
                         <tr>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Company Name
+                                First Name
+                            </th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Last Name
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
@@ -30,11 +35,11 @@
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Logo
+                                Company
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                Website
+                                Phone
                             </th>
                             <th
                                 class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
@@ -52,45 +57,44 @@
                         </thead>
 
                         <tbody class="bg-white">
-                        @foreach($companies as $company)
+                        @foreach($employees as $employee)
 
                             <tr>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="ml-4">
                                         <div class="text-sm font-medium leading-5 text-gray-900">
-                                            {{ $company->name }}
+                                            {{ $employee->first_name }}
                                         </div>
                                     </div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-500">
-                                        {{ $company->email }}
+                                        {{ $employee->last_name }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-500">
-                                        @if ($company->logo)
-                                            <img class=" rounded-lg w-12 h-12" src="{{ "/storage/".
-                                            $company->logo
-                                             }}"
-                                                 alt="">
-                                        @else
-                                            <span class="text-sm">no logo</span>
-                                        @endif
-
-
+                                        <a href="#">{{ $employee->email}}</a>
                                     </div>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-500">
-                                        <a href="#">{{ $company->website }}</a>
+                                        <a class="hover:underline"
+                                           href="{{ route('companies.show', $employee->company) }}">{{
+                                    $employee->company->name}}</a>
+                                    </div>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-500">
+                                        {{$employee->phone}}
                                     </div>
                                 </td>
                                 <td
                                     class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                    <a href="{{ route('companies.show', $company) }}">
+                                    <a href="{{ route('employees.show', $employee) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-400"
                                              fill="none"
                                              viewBox="0 0 24 24" stroke="currentColor">
@@ -101,29 +105,26 @@
                                         </svg>
                                     </a>
                                 </td>
-
                                 <td
                                     class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                    <a href="{{ route('companies.edit', $company) }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
-                                             viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                        </svg>
-                                    </a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                    </svg>
                                 </td>
                                 <td
                                     class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                    <form method="POST" action="{{ route('companies.destroy',  $company) }}">
+                                    <form method="POST" action="{{ route('employees.destroy',  $employee) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ route('companies.destroy',  $company) }}" onclick="event.preventDefault();
-                                                     if ( confirm('Are you sure? This will also  delete all employees' +
-                                                      ' for ' +
-                                                      'this company' +
-                                                      '')) {
-                                                       this.closest('form').submit()
-                                                   }">
+                                        <a href="{{ route('employees.destroy',  $employee) }}" onclick="event.preventDefault();
+                                                if ( confirm('Are you sure?')) {
+                                                    this.closest('form').submit()
+                                                }
+
+
+                                               ">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400"
                                                  fill="none"
                                                  viewBox="0 0 24 24" stroke="currentColor">
@@ -140,9 +141,9 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-center">
+        <div class=" mx-auto max-w-7xl flex justify-between">
 
-            {{$companies->links()}}
+                {{$employees->links()}}
 
         </div>
     </div>

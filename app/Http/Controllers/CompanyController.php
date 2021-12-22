@@ -15,7 +15,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('companies.index');
+        return view('companies.index',['companies' => Company::paginate(10)]);
     }
 
     /**
@@ -25,7 +25,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        //
+        $data = $request->validated();
+        if ($request->has('logo')) {
+            $logo = $request->file('logo')->store('logos');
+            $data['logo'] = $logo ;
+        }
+        $company = Company::create($data);
+        return redirect(route('companies.show', $company));
     }
 
     /**
@@ -47,7 +53,8 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+
+        return view('companies.show', ['company' => $company]);
     }
 
     /**
@@ -58,7 +65,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', ['company' => $company]);
     }
 
     /**
@@ -70,7 +77,13 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        //
+        $data = $request->validated();
+        if ($request->has('logo')) {
+            $logo = $request->file('logo')->store('logos');
+            $data['logo'] = $logo ;
+        }
+        $company->update($data);
+        return redirect(route('companies.show', $company));
     }
 
     /**
@@ -81,6 +94,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect(route('dashboard'));
     }
 }
