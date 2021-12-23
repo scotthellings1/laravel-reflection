@@ -6,12 +6,20 @@
     </x-slot>
     <div class="flex justify-center my-10">
         <div class="flex flex-col w-1/2 bg-white rounded-lg p-8 space-y-4 shadow-md">
+
+                <a href="{{ route('companies.edit', $company) }}"
+                   class=" flex items-center justify-center self-end h-10 px-5 m-2 inline-block w-48 font-semibold
+                   text-blue-900
+                   transition-colors
+               duration-[50ms]
+        bg-blue-400
+        rounded-lg
+        focus:shadow-outline hover:bg-blue-500">Update Company</a>
             @if ($company->logo)
-                <div class="flex justify-center">
+                <div class="flex">
                     <img class=" rounded-lg w-32 h-32" src="../storage/{{ $company->logo }}" alt="">
                 </div>
             @endif
-
             <div class="flex">
                 <span class="mr-4 font-semibold">Company Name:</span>
                 <span>{{ $company->name }}</span>
@@ -78,7 +86,7 @@
                         </thead>
 
                         <tbody class="bg-white">
-                        @foreach($company->employees as $employee)
+                        @foreach($employees as $employee)
 
                             <tr>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -155,8 +163,14 @@
                                 </td>
                             </tr>
                         @endforeach
+
                         </tbody>
                     </table>
+
+
+                </div>
+                <div class="my-4">
+                    {!! $employees->render() !!}
                 </div>
             </div>
         </div>
