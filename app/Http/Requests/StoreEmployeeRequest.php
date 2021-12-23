@@ -24,7 +24,11 @@ class StoreEmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'first_name' => ['required','min:2'],
+            'last_name' => ['required','min:2'],
+            'email' => ['nullable', 'email'],
+            'phone' => ['nullable', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
+            'company' => ['required']
         ];
     }
 }
