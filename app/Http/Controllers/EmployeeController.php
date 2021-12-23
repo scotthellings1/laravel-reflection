@@ -36,7 +36,9 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        //
+        $employee = Employee::create($request->validated());
+//        dd($employee);
+        return redirect(route('employees.show',$employee->id));
     }
 
     /**
@@ -70,7 +72,9 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        $employee->update($request->validated());
+
+        return redirect(route('employees.show',$employee->id));
     }
 
     /**

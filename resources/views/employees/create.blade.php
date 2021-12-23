@@ -10,8 +10,8 @@
         <form method="POST" action="{{ route('employees.store') }}" class="space-y-4">
             @csrf
             <div>
-                <x-label for="company" :value="__('Company')"/>
-                <select id="company" class="block mt-1 w-full"  name="company" required>
+                <x-label for="company_id" :value="__('Company')"/>
+                <select id="company_id" class="block mt-1 w-full"  name="company_id" required>
                     <option value="" disabled selected>Please Select Company</option>
                     @foreach(\App\Models\Company::all(['id', 'name']) as $company)
                         <option value="{{ $company->id }}">{{$company->name}}</option>

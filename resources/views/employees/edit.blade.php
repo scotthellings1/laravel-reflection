@@ -7,8 +7,9 @@
     <x-form>
         <x-auth-session-status class="mb-4" :status="session('status')"/>
         <x-auth-validation-errors class="mb-4" :errors="$errors"/>
-        <form method="POST" action="{{ route('employees.store') }}" class="space-y-4">
+        <form method="POST" action="{{ route('employees.update', $employee) }}" class="space-y-4">
             @csrf
+            @method('put')
             <div>
                 <x-label for="company" :value="__('Company')"/>
                 <h2><a href="{{ route('companies.show', $employee->company->id) }}" class="text-indigo-600">{{ $employee->company->name
