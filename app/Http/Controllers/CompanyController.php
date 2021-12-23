@@ -105,6 +105,6 @@ class CompanyController extends Controller
             File::delete($Image);
         }
         $company->delete();
-        return redirect(route('dashboard'));
+        return back();
     }
 }
