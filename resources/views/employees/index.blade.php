@@ -5,7 +5,17 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto px-4 py-6">
-        <div class="flex justify-end">
+        <div class="flex justify-between">
+            <form action="" method="get">
+                <div>
+                    <x-input id="search"
+                             class="block mt-1 w-full"
+                             type="text"
+                             name="search"
+                             :value="request('search')"
+                             placeholder="Search..." />
+                </div>
+            </form>
             <a href="{{ route('employees.create') }}"
                class=" flex items-center justify-center h-10 px-5 m-2 font-semibold text-blue-900 transition-colors
                duration-[50ms] bg-blue-400 rounded-lg focus:shadow-outline hover:bg-blue-500">Add Employee

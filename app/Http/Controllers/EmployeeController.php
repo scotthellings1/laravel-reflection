@@ -15,7 +15,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employees.index',['employees' => Employee::paginate(10)]);
+        return view('employees.index',[
+            'employees' =>  Employee::latest()->filter(request(['search']))->paginate(10)->withQueryString()
+            ]);
     }
 
     /**
@@ -49,6 +51,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
+
         return view('employees.show', ['employee' => $employee]);
     }
 
