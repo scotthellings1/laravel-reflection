@@ -5,35 +5,31 @@
         </h2>
     </x-slot>
     <div class="flex justify-center my-10">
-        <div class="flex flex-col w-1/2 bg-white rounded-lg p-8 space-y-4 shadow-md">
+        <div class="flex flex-col w-full md:w-2/3 lg:w-1/2 bg-white rounded-lg mx-8 p-8 space-y-4 shadow-md">
 
                 <a href="{{ route('companies.edit', $company) }}"
                    class=" flex items-center justify-center self-end h-10 px-5 m-2 inline-block w-48 font-semibold
-                   text-blue-900
-                   transition-colors
-               duration-[50ms]
-        bg-blue-400
-        rounded-lg
-        focus:shadow-outline hover:bg-blue-500">Update Company</a>
+                   text-blue-900 transition-colors duration-[50ms] bg-blue-400 rounded-lg focus:shadow-outline
+                   hover:bg-blue-500">Update Company</a>
             @if ($company->logo)
                 <div class="flex">
                     <img class=" rounded-lg w-32 h-32" src="../storage/{{ $company->logo }}" alt="">
                 </div>
             @endif
-            <div class="flex">
-                <span class="mr-4 font-semibold">Company Name:</span>
+            <div class="flex flex-col lg:flex-row justify-between mr-4">
+                <span class=" font-semibold">Company Name:</span>
                 <span>{{ $company->name }}</span>
             </div>
-            <div class="flex">
-                <span class="mr-4 font-semibold">Company Email:</span>
+            <div class="flex flex-col lg:flex-row justify-between mr-4">
+                <span class=" font-semibold">Company Email:</span>
                 <span>{{ $company->email }}</span>
             </div>
-            <div class="flex">
-                <span class="mr-4 font-semibold">Company Website:</span>
+            <div class="flex flex-col lg:flex-row justify-between mr-4">
+                <span class=" font-semibold">Company Website:</span>
                 <span>  <a href="#">{{ $company->website }}</a></span>
             </div>
-            <div class="flex">
-                <span class="mr-4 font-semibold">Number of Employees:</span>
+            <div class="flex flex-col lg:flex-row justify-between mr-4">
+                <span class="font-semibold">Number of Employees:</span>
                 <span>  <a href="#">{{ $company->employees->count() }}</a></span>
             </div>
         </div>

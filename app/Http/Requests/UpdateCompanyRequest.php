@@ -32,4 +32,10 @@ class UpdateCompanyRequest extends FormRequest
             'website' => 'nullable|url'
         ];
     }
+    public function messages()
+    {
+        return [
+            'logo.dimensions' => 'Image must be at least 100px X 100px'
+        ];
+    }
 }

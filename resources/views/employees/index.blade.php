@@ -8,11 +8,8 @@
         <div class="flex justify-end">
             <a href="{{ route('employees.create') }}"
                class=" flex items-center justify-center h-10 px-5 m-2 font-semibold text-blue-900 transition-colors
-               duration-[50ms]
-        bg-blue-400
-        rounded-lg
-        focus:shadow-outline hover:bg-blue-500">Add Employee</a>
-
+               duration-[50ms] bg-blue-400 rounded-lg focus:shadow-outline hover:bg-blue-500">Add Employee
+            </a>
         </div>
         <div class="flex flex-col mt-2 mb-8">
             <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">

@@ -34,7 +34,8 @@ class StoreCompanyRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique' => 'Company already exists with that name'
+            'name.unique' => 'Company already exists with that name',
+            'logo.dimensions' => 'Image must be at least 100px X 100px'
         ];
     }
 }
