@@ -36,9 +36,17 @@
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 py-4"><h1 class="text-2xl my-2">
-            Employees
-        </h1>
+    <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex justify-between w-full">
+            <h1 class="text-2xl my-2">
+                Employees
+            </h1>
+            <a href="{{ route('employees.create', ['company' => $company]) }}"
+               class=" flex items-center justify-center self-end h-10 px-5 m-2 inline-block w-48 font-semibold
+                   text-blue-900 transition-colors duration-[50ms] bg-blue-400 rounded-lg focus:shadow-outline
+                   hover:bg-blue-500">Add Employee</a>
+        </div>
+
 
         <div class="flex flex-col mt-2 mb-8">
             <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
