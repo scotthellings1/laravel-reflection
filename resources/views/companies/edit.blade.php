@@ -42,4 +42,24 @@
             </div>
         </form>
     </x-form>
+    <x-slot name="scripts">
+        <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+        <script>
+            // Set default FilePond options
+            FilePond.setOptions({
+                server: {
+                    url: "{{ config('filepond.server.url') }}",
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ @csrf_token() }}",
+                    }
+                }
+            });
+
+            // Create the FilePond instance
+            FilePond.create(document.querySelector('input[name="logo"]'));
+        </script>
+    </x-slot>
+    <x-slot name="styles">
+        <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    </x-slot>
 </x-app-layout>

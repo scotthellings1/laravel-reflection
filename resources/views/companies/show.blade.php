@@ -13,7 +13,8 @@
                    hover:bg-blue-500">Update Company</a>
             @if ($company->logo)
                 <div class="flex">
-                    <img class=" rounded-lg w-32 h-32" src="../storage/{{ $company->logo }}" alt="">
+                    <img class=" rounded-lg w-32 h-32" src="{{asset('storage/logos/' . $company->logo) }}"
+                         alt="">
                 </div>
             @endif
             <div class="flex flex-col lg:flex-row justify-between mr-4">

@@ -17,7 +17,7 @@ class CompanyFactory extends Factory
             'name' => $this->faker->unique->company(),
             'email' => $this->faker->safeEmail(),
             'website' => $this->faker->url(),
-            'logo' => $this->faker->image('storage/app/public/', 100, 100, null ,false)
+            'logo' => $this->faker->image('storage/app/public/logos', 100, 100, null ,false)
         ];
     }
 }

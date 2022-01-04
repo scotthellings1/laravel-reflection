@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
+use RahulHaque\Filepond\Facades\Filepond;
 use Illuminate\Support\Facades\File;
 
 class CompanyController extends Controller
@@ -42,9 +43,15 @@ class CompanyController extends Controller
     {
         $data = $request->validated();
         if ($request->has('logo')) {
-            $logo = $request->file('logo')->store('logos');
-            $data['logo'] = $logo;
+            Filepond::field($request->logo)
+                ->validate(['logo' => 'required|image|max:2000|dimensions:min_width=100,min_height=100']);
+            $ext = Filepond::field($request->logo)->getModel();
+            $filename = 'logo-' . now()->timestamp ;
+           Filepond::field($request->logo)
+                ->moveTo('logos/' . $filename);
+           $data['logo'] = $filename . '.' . $ext['extension'];
         }
+
         $company = Company::create($data);
         return redirect(route('companies.show', $company));
     }
@@ -81,15 +88,20 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        $oldImage = storage_path('app/public/') . $company->logo;
+        $oldImage = storage_path('app/public/logos/' . $company->logo);
         $data = $request->validated();
 
         if ($request->has('logo')) {
             if (File::exists($oldImage)) {
                 File::delete($oldImage);
             }
-            $logo = $request->file('logo')->store('logos');
-            $data['logo'] = $logo;
+            Filepond::field($request->logo)
+                ->validate(['logo' => 'required|image|max:2000|dimensions:min_width=100,min_height=100']);
+            $ext = Filepond::field($request->logo)->getModel();
+            $filename = 'logo-' . now()->timestamp ;
+            Filepond::field($request->logo)
+                ->moveTo('logos/' . $filename);
+            $data['logo'] = $filename . '.' . $ext['extension'];
         }
         $company->update($data);
         return redirect(route('companies.show', $company));

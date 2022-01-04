@@ -79,10 +79,10 @@
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-500">
                                         @if ($company->logo)
-                                            <img class=" rounded-lg w-12 h-12" src="{{ "/storage/".
-                                            $company->logo
-                                             }}"
+                                            <img class=" rounded-lg w-12 h-12" src="{{asset('storage/logos/' .
+                                            $company->logo) }}"
                                                  alt="">
+
                                         @else
                                             <span class="text-sm">no logo</span>
                                         @endif
