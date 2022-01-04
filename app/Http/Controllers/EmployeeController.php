@@ -16,7 +16,11 @@ class EmployeeController extends Controller
     public function index()
     {
         return view('employees.index',[
-            'employees' =>  Employee::latest()->filter(request(['search']))->paginate(10)->withQueryString()
+            'employees' =>  Employee::latest()
+                ->with('company')
+                ->filter(request(['search']))
+                ->paginate(10)
+                ->withQueryString()
             ]);
     }
 
