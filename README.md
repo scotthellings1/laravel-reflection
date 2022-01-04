@@ -9,6 +9,9 @@
 * run `php artisan storage:link` to link the storage directory to the public folder
 * migrate and seed the database with `php artisan migrate --seed`
 * run the project with `php artisan serve`
+* login details
+  * username : admin@admin.com
+  * password: password
 
 #### required functionality
 - [x] Basic Laravel Auth: ability to log in as administrator
