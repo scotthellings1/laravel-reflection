@@ -35,7 +35,8 @@ class UpdateCompanyRequest extends FormRequest
     public function messages()
     {
         return [
-            'logo.dimensions' => 'Image must be at least 100px X 100px'
+            'logo.dimensions' => 'Image must be at least 100px X 100px',
+            'website.url' => 'Please provide a full url including http:// or https://'
         ];
     }
 }

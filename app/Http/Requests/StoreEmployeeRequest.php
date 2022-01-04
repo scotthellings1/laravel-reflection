@@ -26,7 +26,7 @@ class StoreEmployeeRequest extends FormRequest
         return [
             'first_name' => ['required','min:2'],
             'last_name' => ['required','min:2'],
-            'email' => ['nullable', 'email'],
+            'email' => ['nullable', 'unique:employees,email', 'email'],
             'phone' => ['nullable', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
             'company_id' => ['required']
         ];

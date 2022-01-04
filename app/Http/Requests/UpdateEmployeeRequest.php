@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateEmployeeRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class UpdateEmployeeRequest extends FormRequest
         return [
             'first_name' => ['required','min:2'],
             'last_name' => ['required','min:2'],
-            'email' => ['nullable', 'email'],
+            'email' => ['nullable', 'email', Rule::unique('employees')->ignore($this->employee->id)],
             'phone' => ['nullable', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10']
         ];
     }
