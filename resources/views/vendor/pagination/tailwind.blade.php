@@ -1,7 +1,8 @@
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex flex-1 items-center
+    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex flex-col sm:flex-row flex-1
+    items-center
     justify-between">
-        <div class="flex justify-between flex-1 sm:hidden">
+        <div class="flex justify-between flex-1 sm:hidden mb-4">
             @if ($paginator->onFirstPage())
                 <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
                     {!! __('pagination.previous') !!}
@@ -23,9 +24,10 @@
             @endif
         </div>
 
-        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+{{--        <div class="flex  sm:flex-1 sm:flex sm:items-center sm:justify-between">--}}
+        <div class="flex-1 flex items-center justify-between">
             <div>
-                <p class="text-sm text-gray-700 leading-5">
+                <p class="text-sm text-gray-700 leading-5 mr-4">
                     {!! __('Showing') !!}
                     @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
@@ -105,3 +107,19 @@
         </div>
     </nav>
 @endif
+
+
+
+
+    @forelse ($employees as $employee)
+        <tr>
+            <td>{{ $employee->Id }}</td>
+            <td>{{ $employee->first_name }}</td>
+            <td>{{ $employee->last_name }}</td>
+            <td>{{ $employee->company_id }}</td>
+            <td>{{ $employee->email }}</td>
+            <td>{{ $employee->phone_number }}</td>
+        </tr>
+    @empty
+        <p>No posts found</p>
+    @endforelse

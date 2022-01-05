@@ -1452,6 +1452,10 @@ select {
     flex: 1 1 0%;
   }
 
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
   .sm\:items-center {
     align-items: center;
   }
