@@ -34,8 +34,11 @@
                 <x-label for="logo" :value="__('Logo')"/>
                 <x-input id="logo" class="block mt-1 w-full" type="file" name="logo"/>
             </div>
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-between mt-4">
 
+                <a href="{{url()->previous()}}" class="ml-3 underline">
+                    {{ __('Cancel') }}
+                </a>
                 <x-button class="ml-3 bg-blue-400 hover:bg-blue-500">
                     {{ __('Update Company') }}
                 </x-button>

@@ -39,7 +39,11 @@
                 <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone',
                 $employee->phone)"/>
             </div>
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-between mt-4">
+
+                <a href="{{url()->previous()}}" class="ml-3 underline">
+                    {{ __('Cancel') }}
+                </a>
                 <x-button class="ml-3 bg-blue-400 hover:bg-blue-500">
                     {{ __('Update Employee') }}
                 </x-button>
