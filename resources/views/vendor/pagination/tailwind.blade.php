@@ -42,7 +42,7 @@
                 </p>
             </div>
 
-            <div>
+            <div class="hidden sm:block">
                 <span class="relative z-0 inline-flex shadow-sm rounded-md">
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())
@@ -107,19 +107,3 @@
         </div>
     </nav>
 @endif
-
-
-
-
-    @forelse ($employees as $employee)
-        <tr>
-            <td>{{ $employee->Id }}</td>
-            <td>{{ $employee->first_name }}</td>
-            <td>{{ $employee->last_name }}</td>
-            <td>{{ $employee->company_id }}</td>
-            <td>{{ $employee->email }}</td>
-            <td>{{ $employee->phone_number }}</td>
-        </tr>
-    @empty
-        <p>No posts found</p>
-    @endforelse
