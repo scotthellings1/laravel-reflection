@@ -2,7 +2,7 @@
 ### Install
 
 * clone repository
-  `cd` into cloned project folder
+* `cd` into cloned project folder
 * run `composer install` to install the laravel framework dependecies
 * run `npm install && npm run dev` to install and compile the assets  
 * copy `.env.example` to `.env` and add local database credentials
