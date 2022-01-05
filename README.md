@@ -13,6 +13,8 @@
 * login details
   * username : admin@admin.com
   * password: password
+    
+
 
 #### required functionality
 - [x] Basic Laravel Auth: ability to log in as administrator
@@ -32,4 +34,4 @@
 
 - [x]  Integrate drag and drop file upload
 - [x]  Search Employees and Companies  
-- [ ]  authorization permissions 
+- [x]  Cache dashboard content 

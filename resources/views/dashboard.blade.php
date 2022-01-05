@@ -10,10 +10,11 @@
 
             <x-counter-card text="Companies" count="{{ $companies->count() }}" icon="C">
                 <h2 class="my-4"> Latest Companies</h2>
-                <ul class="mb-2  font-medium text-gray-600">
+                <ul class="mb-2  font-medium text-gray-600 ">
                     @foreach($companies->take(5) as $company)
                         <li>
-                            <a href="{{route('companies.show', $company)}}">{{$company->name}}</a> - <span
+                            <a class="text-indigo-400 hover:underline"  href="{{route('companies.show', $company)
+                            }}">{{$company->name}}</a> - <span
                                 class="text-sm">{{$company->created_at->diffForHumans()}}</span>
                         </li>
                     @endforeach
@@ -26,9 +27,10 @@
                 <h2 class="my-4"> Latest Employees</h2>
                 <ul class="mb-2  font-medium text-gray-600">
                     @foreach($employees->take(5) as $employee)
-                        <li class="text-indigo-600"><a
+                        <li class="text-indigo-600 "><a
+                                class="hover:underline"
                                 href="{{route('employees.show', $employee)}}">{{$employee->fullname}}</a> -
-                            <a class="text-indigo-400" href="{{route('companies.show', $employee->company->id)
+                            <a class="text-indigo-400 hover:underline" href="{{route('companies.show', $employee->company->id)
                                 }}">{{$employee->company->name}}</a> <span
                                 class="text-sm text-gray-600">{{$employee->created_at->diffForHumans()}}</span></li>
                     @endforeach
