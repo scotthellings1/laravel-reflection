@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
+use Illuminate\Support\Facades\Cache;
 use RahulHaque\Filepond\Facades\Filepond;
 use Illuminate\Support\Facades\File;
 
@@ -41,6 +42,7 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
+        Cache::delete('dashboard.companies');
         $data = $request->validated();
         if ($request->has('logo')) {
             Filepond::field($request->logo)
@@ -88,6 +90,7 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
+        Cache::delete('dashboard.companies');
         $oldImage = storage_path('app/public/logos/' . $company->logo);
         $data = $request->validated();
 
@@ -115,6 +118,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
+        Cache::delete('dashboard.companies');
         $Image = storage_path('app/public/') . $company->logo;
         if (File::exists($Image)) {
             File::delete($Image);

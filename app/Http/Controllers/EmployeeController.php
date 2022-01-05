@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
+use Illuminate\Support\Facades\Cache;
 
 class EmployeeController extends Controller
 {
@@ -42,6 +43,7 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
+        Cache::delete('dashboard.employees');
         $employee = Employee::create($request->validated());
 //        dd($employee);
         return redirect(route('employees.show',$employee->id));
@@ -79,6 +81,7 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
+        Cache::delete('dashboard.employees');
         $employee->update($request->validated());
 
         return redirect(route('employees.show',$employee->id));
@@ -92,6 +95,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
+        Cache::delete('dashboard.employees');
         $employee->delete();
         return back();
     }

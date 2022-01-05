@@ -34,7 +34,7 @@
                 <a href="{{url()->previous()}}" class="ml-3 underline">
                     {{ __('Cancel') }}
                 </a>
-                <x-button type="button" class="ml-3 bg-blue-400 hover:bg-blue-500">
+                <x-button class="ml-3 bg-blue-400 hover:bg-blue-500">
                     {{ __('Add Company') }}
                 </x-button>
             </div>
