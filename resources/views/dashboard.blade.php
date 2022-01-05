@@ -7,12 +7,34 @@
     <div class="max-w-7xl px-4 mx-auto grid mt-8">
         <!-- Cards -->
         <div class="grid gap-6 mb-8 md:grid-cols-2">
-            <a href="{{route('companies.index')}}">
-                <x-counter-card text="Companies" count="{{ $companies }}" icon="C"/>
-            </a>
-            <a href="{{route('employees.index')}}">
-                <x-counter-card text="Employees" count="{{ $employees }}" icon="E"/>
-            </a>
+
+            <x-counter-card text="Companies" count="{{ $companies->count() }}" icon="C">
+                <h2 class="my-4"> Latest Companies</h2>
+                <ul class="mb-2  font-medium text-gray-600">
+                    @foreach($companies->take(5) as $company)
+                        <li>
+                            <a href="{{route('companies.show', $company)}}">{{$company->name}}</a> - <span
+                                class="text-sm">{{$company->created_at->diffForHumans()}}</span>
+                        </li>
+                    @endforeach
+                </ul>
+
+            </x-counter-card>
+
+
+            <x-counter-card text="Employees" count="{{ $employees->count() }}" icon="E">
+                <h2 class="my-4"> Latest Employees</h2>
+                <ul class="mb-2  font-medium text-gray-600">
+                    @foreach($employees->take(5) as $employee)
+                        <li class="text-indigo-600"><a
+                                href="{{route('employees.show', $employee)}}">{{$employee->fullname}}</a> -
+                            <a class="text-indigo-400" href="{{route('companies.show', $employee->company->id)
+                                }}">{{$employee->company->name}}</a> <span
+                                class="text-sm text-gray-600">{{$employee->created_at->diffForHumans()}}</span></li>
+                    @endforeach
+                </ul>
+
+            </x-counter-card>
         </div>
     </div>
 

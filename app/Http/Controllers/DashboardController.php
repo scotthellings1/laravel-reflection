@@ -10,8 +10,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $companies = Company::all()->count();
-        $employees = Employee::all()->count();
-        return view('dashboard', [ 'companies' => $companies, 'employees' => $employees]);
+        $companies = Company::with('employees')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $employees = Employee::with('company')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return view('dashboard', [
+            'companies' => $companies,
+            'employees' => $employees]);
     }
 }
