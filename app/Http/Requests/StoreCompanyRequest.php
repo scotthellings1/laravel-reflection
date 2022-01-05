@@ -23,11 +23,12 @@ class StoreCompanyRequest extends FormRequest
      */
     public function rules()
     {
+        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         return [
             'name' => ['required','min:2', 'unique:companies,name'],
-            'email' => ['nullable', 'email'],
+            'email' => ['nullable', 'email:filter'],
 //            'logo' => ['image', 'dimensions:min_width=100,min_height=100'],
-            'website' => ['nullable', 'url']
+            'website' => ['nullable', 'regex:' . $regex]
         ];
     }
 
@@ -36,7 +37,7 @@ class StoreCompanyRequest extends FormRequest
         return [
             'name.unique' => 'Company already exists with that name',
             'logo.dimensions' => 'Image must be at least 100px X 100px',
-            'website.url' => 'Please provide a full url including http:// or https://'
+            'website.regex' => 'Please provide a valid url'
         ];
     }
 }
