@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
+        <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Companies') }}
         </h2>
+            <a href="{{ url()->previous() }}"
+               class=" flex items-center justify-center h-10 px-5 m-2 font-semibold text-blue-900 transition-colors
+               duration-[50ms] bg-blue-400 rounded-lg focus:shadow-outline hover:bg-blue-500">Back</a>
+        </div>
     </x-slot>
     <div class="flex justify-center my-10">
         <div class="flex flex-col w-full md:w-2/3 lg:w-1/2 bg-white rounded-lg mx-8 p-8 space-y-4 shadow-md">
@@ -116,7 +121,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-500">
-                                        <a href="#">{{ $employee->email}}</a>
+                                        <a href="mailto:{{ $employee->email }}">{{ $employee->email}}</a>
                                     </div>
                                 </td>
 

@@ -1,8 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
+        <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Update') }} {{ $company->name }}
         </h2>
+            <a href="{{ url()->previous() }}"
+               class=" flex items-center justify-center h-10 px-5 m-2 font-semibold text-blue-900 transition-colors
+               duration-[50ms] bg-blue-400 rounded-lg focus:shadow-outline hover:bg-blue-500">Back</a></div>
     </x-slot>
     <x-form>
         <x-auth-session-status class="mb-4" :status="session('status')"/>
@@ -32,6 +36,11 @@
             </div>
             <div>
                 <x-label for="logo" :value="__('Logo')"/>
+                @if($company->logo)
+                    <img class="mx-auto py-2" src="{{asset('storage/logos/' . $company->logo) }}" alt="">
+                @else
+                    no logo
+                @endif
                 <x-input id="logo" class="block mt-1 w-full" type="file" name="logo"/>
             </div>
             <div class="flex items-center justify-between mt-4">
